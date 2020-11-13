@@ -1,0 +1,34 @@
+benchmark set selection tool 1.0.0
+
+LICENSE
+  The tool is part of the Potassco project hosted at SourceForge.
+  It is distributed under the GNU Public Licens. See COPYING for
+  details regarding the license.
+  
+OVERVIEW
+  The benchmark set selection tool filters a given set of instances 
+  such that hard and too easy instances are removed and
+  the distribution of instance clusters will be more uniform.
+  
+  The tool is written in Python (Serie 2.7).
+  
+  Detailed information, source code, are available at: http://potassco.sourceforge.net/
+
+REQUIREMENTS:
+
+  * Python 2.7
+  
+PACKAGE CONTENTS
+  COPYING      - GNU Public License
+  README       - This file
+  selector.py  - main script for execution
+  clusterKMeans.py - cluster algorithm 
+  lNormalizer.py   - linear normalization
+  zNormalizer.py   - zscore normalization
+  
+USAGE
+  The tool needs as inputs a file with runtimes of reference solvers
+  and instance features for all instances.
+    
+  For further parameter, call:
+    python2.7 src/selector.py -h
