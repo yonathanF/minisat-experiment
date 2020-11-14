@@ -1,0 +1,5 @@
+*.o
+*.a
+minisat/core/minisat
+depend.mk
+.DS_Store
