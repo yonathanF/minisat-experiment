@@ -61,7 +61,7 @@ static void SIGINT_exit(int signum) {
     if (solver->verbosity > 0){
         printStats(*solver);
         printf("\n"); printf("*** INTERRUPTED ***\n"); }
-    _exit(1); }
+    _exit(2); }
 
 
 //=================================================================================================
