@@ -3,3 +3,6 @@
 minisat/core/minisat
 depend.mk
 .DS_Store
+benchmarkdata/
+*.pyc
+minisat/*/minisat
