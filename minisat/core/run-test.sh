@@ -1,9 +1,25 @@
 #!/bin/bash
 function parse_print_results(){
     results=$1
+    signal=$2
     cputime=$( echo "$results" | grep -i "CPU time" | tr -d -c 0-9.'\n' )
     memused=$( echo "$results" | grep -i "Memory used" | tr -d -c 0-9.'\n' )
-    echo $cputime","$memused
+    satreturn=$( echo "$results" | grep -i "SATISFIABLE\|INDETERMINATE" | tr -d -c A-Z'\n' )
+    case $exitcode in
+        2) # Interrupted, most likely due to timeout
+            satresult="INDETERMINATE"
+            ;;
+        *) # Some other thing we're not expecting
+            
+            if [ -z "$satreturn" ]
+            then
+                satresult="ERROR"
+            else
+                satresult="$satreturn"
+            fi
+            ;;
+    esac
+    echo $cputime","$memused","$satresult
 }
 
 function run_with_options(){
@@ -12,30 +28,7 @@ function run_with_options(){
     testfile=$3
     runsat=$( ./minisat -verb=1 $options $testfile )
     exitcode=$?
-    case $exitcode in
-        2) # Interrupted, most likely due to timeout
-            satresult="TIME"
-            ;;
-        10) # Satisfiable
-            satresult="SAT"
-            ;;
-        20) # Unsatisfiable
-            satresult="UNSAT"
-            ;;
-        30) # Indeterminate (probably due to timeout)
-            satresult="TIME"
-            ;;
-        40) # Out of memory
-            setresult="MEM"
-            ;;
-        139) # segfault also gets MEM
-            satresult="MEM"
-            ;;
-        *) # Some other thing we're not expecting
-            satresult="ERROR"
-            ;;
-    esac
-    echo "$( basename $testfile ),$testname,"$(parse_print_results "$runsat" )","$satresult
+    echo "$( basename $testfile ),$testname,"$(parse_print_results "$runsat" $exitcode)
 }
 
 function run_tests(){
