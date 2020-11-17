@@ -13,19 +13,25 @@ function run_with_options(){
     runsat=$( ./minisat -verb=1 $options $testfile )
     exitcode=$?
     case $exitcode in
+        2) # Interrupted, most likely due to timeout
+            satresult="TIME"
+            ;;
         10) # Satisfiable
             satresult="SAT"
             ;;
         20) # Unsatisfiable
             satresult="UNSAT"
             ;;
-        139) # Out of memory (segfault) gets 139
-            satresult="MEM"
-            ;;
-        2) # Interrupted, most likely due to timeout
+        30) # Indeterminate (probably due to timeout)
             satresult="TIME"
             ;;
-        *) # Some other thing we haven't caught
+        40) # Out of memory
+            setresult="MEM"
+            ;;
+        139) # segfault also gets MEM
+            satresult="MEM"
+            ;;
+        *) # Some other thing we're not expecting
             satresult="ERROR"
             ;;
     esac
@@ -41,7 +47,7 @@ function run_tests(){
     # RST
     run_with_options "RST" "-dis-learn -no-dis-restart -dis-2LW" $1
     # 2WL
-    run_with_options "2WL" "-dis-learn -dis-restart -no-dis-2LW -cpu-lim=0" $1
+    run_with_options "2WL" "-dis-learn -dis-restart -no-dis-2LW" $1
     # VSIDS
 
     # NOTCL
