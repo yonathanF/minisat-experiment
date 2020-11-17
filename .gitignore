@@ -6,3 +6,4 @@ depend.mk
 benchmarkdata/
 *.pyc
 minisat/*/minisat
+env/
