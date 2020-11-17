@@ -1,4 +1,4 @@
-Instances,CCASat/default-n1,clasp/crafted-n1,lingeling/default-n1,glucose/default-n1,sinn/default-n1
+Instances,CCASat,clasp,lingeling,glucose,sinn
 Crafted/12/SATCompetition2011/crafted/SAT11/crafted/skvortsov/battleship/battleship-11-21-sat.cnf.gz,0.0191789,900,0.864008,4.76054,42.6882
 Crafted/12/sc2012HardCombinatorial/satrace-unselected/repeat/prime2209/prime2209-96.cnf.gz,900,1.93982,9.95242,2.21368,1.32378
 Crafted/12/SATCompetition2011/crafted/SAT09/CRAFTED/sgi/new-difficult-23-189-21-75.cnf.gz,12.5139,389.6,900,900,49.7946
