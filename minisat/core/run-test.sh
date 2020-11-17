@@ -9,8 +9,11 @@ function parse_print_results(){
         2) # Interrupted, most likely due to timeout
             satresult="INDETERMINATE"
             ;;
+        139) # segfault, likely due to out-of-memory
+            satresult="INDETERMINATE"
+            ;;
         *) # Some other thing we're not expecting
-            
+            # only output error if the sat solver doesn't return its own result
             if [ -z "$satreturn" ]
             then
                 satresult="ERROR"
