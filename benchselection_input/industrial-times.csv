@@ -1,4 +1,4 @@
-Instances,CCASat/default-n1,clasp/crafted-n1,lingeling/default-n1,glucose/default-n1,sinn/default-n1
+Instances,CCASat,clasp,lingeling,glucose,sinn
 Industrial/12/SATCompetition2009/application/SAT09/APPLICATIONS/diagnosis/UR-15-10p0.cnf.gz,900,900,434.777,562.828,364.522
 Industrial/09/APPLICATION/SAT07/industrial/jarvisalo/eq.atree.braun.8.unsat.cnf.gz,900,10.5104,11.2438,10.7026,20.2848
 Industrial/12/satrace2008/marijn-philips.cnf.gz,900,342.266,900,900,900
