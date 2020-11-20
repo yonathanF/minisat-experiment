@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from os import path
 
 crafted_file = "crafted-times.csv"
@@ -16,4 +17,26 @@ no_timeouts = df.query(
 
 no_timeouts['Ave'] = no_timeouts.mean(axis=1)
 under_ave = no_timeouts.query('Ave < 100')
-print(under_ave)
+
+
+# --------------
+
+sorted_df = under_ave.transform(np.sort)
+cum_summed = sorted_df.cumsum()
+cum_summed['Instances'] = np.arange(start=1, stop=107)
+
+ax1 = cum_summed.plot.scatter(x='Instances',
+                              y='sinn',
+                              c='DarkBlue')
+cum_summed.plot.scatter(x='Instances',
+                        y='clasp',
+                        c='Red',
+                        ax=ax1)
+
+cum_summed.plot.scatter(x='Instances',
+                        y='lingeling',
+                        c='Green',
+                        ax=ax1)
+
+
+plt.show()
