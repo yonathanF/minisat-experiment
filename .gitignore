@@ -7,3 +7,4 @@ benchmarkdata/
 *.pyc
 minisat/*/minisat
 env/
+minisat/core/results.csv
