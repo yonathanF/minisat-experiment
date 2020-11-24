@@ -6,6 +6,9 @@ function parse_print_results(){
     signal=$2
     cputime=$( echo "$results" | grep -i "CPU time" | tr -d -c 0-9.'\n' )
     memused=$( echo "$results" | grep -i "Memory used" | tr -d -c 0-9.'\n' )
+    conflictspersecond=$( echo "$results" | grep -i "conflicts" | grep -o "([0-9]* /sec)" | tr -d -c 0-9'\n' )
+    decisionspersecond=$( echo "$results" | grep -i "decisions" | grep -o "([0-9]* /sec)" | tr -d -c 0-9'\n' )
+    propspersecond=$( echo "$results" | grep -i "propagations" | grep -o "([0-9]* /sec)" | tr -d -c 0-9'\n' )
     satreturn=$( echo "$results" | grep -i "SATISFIABLE\|INDETERMINATE" | tr -d -c A-Z'\n' )
     case $exitcode in
         2) # Interrupted, most likely due to timeout
@@ -24,7 +27,7 @@ function parse_print_results(){
             fi
             ;;
     esac
-    echo $cputime","$memused","$satresult
+    echo $cputime","$memused","$conflictspersecond","$decisionspersecond","$propspersecond","$satresult
 }
 
 function run_with_options(){
@@ -84,7 +87,7 @@ if [ -f "$1" ]; then
 fi
 
 outfile="$1"
-echo "Instance,Option,Time,Memory,Sat" > $outfile
+echo "Instance,Option,Time,Memory,ConflictsPerSecond,DecisionsPerSecond,PropagationsPerSecond,Sat" > $outfile
 
 shift;
 num_files=$#
