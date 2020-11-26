@@ -17,7 +17,7 @@ no_timeouts = df.query(
 
 no_timeouts['Ave'] = no_timeouts.mean(axis=1)
 under_ave = no_timeouts.query('Ave < 100')
-
+under_ave.to_csv('under_ave.csv')
 
 # --------------
 
