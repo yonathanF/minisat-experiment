@@ -18,25 +18,25 @@ no_timeouts = df.query(
 no_timeouts['Ave'] = no_timeouts.mean(axis=1)
 under_ave = no_timeouts.query('Ave < 100')
 under_ave.to_csv('under_ave.csv')
-
+under_ave['Instances'].to_csv('sat_cands.csv', header=False, index=False)
 # --------------
 
-sorted_df = under_ave.transform(np.sort)
-cum_summed = sorted_df.cumsum()
-cum_summed['Instances'] = np.arange(start=1, stop=107)
+# sorted_df = under_ave.transform(np.sort)
+# cum_summed = sorted_df.cumsum()
+# cum_summed['Instances'] = np.arange(start=1, stop=107)
 
-ax1 = cum_summed.plot.scatter(x='Instances',
-                              y='sinn',
-                              c='DarkBlue')
-cum_summed.plot.scatter(x='Instances',
-                        y='clasp',
-                        c='Red',
-                        ax=ax1)
+# ax1 = cum_summed.plot.scatter(x='Instances',
+# y='sinn',
+# c='DarkBlue')
+# cum_summed.plot.scatter(x='Instances',
+# y='clasp',
+# c='Red',
+# ax=ax1)
 
-cum_summed.plot.scatter(x='Instances',
-                        y='lingeling',
-                        c='Green',
-                        ax=ax1)
+# cum_summed.plot.scatter(x='Instances',
+# y='lingeling',
+# c='Green',
+# ax=ax1)
 
 
-plt.show()
+# plt.show()
