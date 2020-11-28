@@ -4,6 +4,7 @@ minisat/core/minisat
 depend.mk
 .DS_Store
 benchmarkdata/
+benchselection_input/candidate_files/
 *.pyc
 minisat/*/minisat
 env/
