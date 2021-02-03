@@ -47,7 +47,7 @@ function run_tests(){
     outfile=$2
 
     # Settings to disable VSIDS
-    no_vsids="-no-DLIS -var-decay=0.999 -cla-decay=0.999" 
+    no_vsids="-DLIS" 
     # Settings to enable VSIDS
     vsids="-no-DLIS -var-decay=0.95 -cla-decay=0.999"
 
